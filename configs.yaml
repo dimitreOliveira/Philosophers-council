@@ -1,0 +1,5 @@
+model_id: google/gemma-2b-it
+device: cpu
+max_new_tokens: 16 #128
+prompts:
+  marcus_aurelius: prompts/marcus_aurelius.txt

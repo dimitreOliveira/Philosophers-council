@@ -1,0 +1,11 @@
+isort
+black
+flake8
+mypy
+pyyaml
+pydantic
+python-dotenv
+gradio
+torch
+transformers
+accelerate
