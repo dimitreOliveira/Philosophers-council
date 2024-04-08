@@ -28,8 +28,20 @@ pipe = pipeline(
 
 chatbot_list: List[Chat] = [
     Chat(
-        name="Marcus Aurelius",
-        init_prompt=open(configs["prompts"]["marcus_aurelius"], "r").read(),
+        name="Seneca",
+        init_prompt=configs["prompts"]["seneca"],
+        model=pipe,
+        max_new_tokens=configs["max_new_tokens"],
+    ),
+    Chat(
+        name="Confucius",
+        init_prompt=configs["prompts"]["confucius"],
+        model=pipe,
+        max_new_tokens=configs["max_new_tokens"],
+    ),
+    Chat(
+        name="Aristotle",
+        init_prompt=configs["prompts"]["aristotle"],
         model=pipe,
         max_new_tokens=configs["max_new_tokens"],
     ),
@@ -49,11 +61,15 @@ def chat_fn(prompt: str, _: List[str]) -> Tuple[str, list[Tuple[str, Any]]]:
     # Format chat from each bot
     for chat in zip(*chat_history):
         chat_history_ = []
-        for idx, chat_ in enumerate(chat):
-            if idx == 0:
-                chat_history_.append(chat_)
+        for chat_idx, (user_chat, assistant_chat) in enumerate(chat):
+            if chat_idx == 0:
+                chat_history_.append(
+                    (user_chat, f"{chatbot_list[chat_idx].name}: {assistant_chat}")
+                )
             else:
-                chat_history_.append((None, chat_[1]))
+                chat_history_.append(
+                    (None, f"{chatbot_list[chat_idx].name}: {assistant_chat}")
+                )
 
         merged_chat_history.extend(chat_history_)
 

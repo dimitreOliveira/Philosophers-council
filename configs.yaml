@@ -1,5 +1,7 @@
 model_id: google/gemma-2b-it
 device: cpu
-max_new_tokens: 16 #128
+max_new_tokens: 128
 prompts:
-  marcus_aurelius: prompts/marcus_aurelius.txt
+  seneca: prompts/seneca.txt
+  confucius: prompts/confucius.txt
+  aristotle: prompts/aristotle.txt
