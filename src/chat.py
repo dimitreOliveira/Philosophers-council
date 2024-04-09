@@ -6,14 +6,15 @@ from pydantic import BaseModel
 
 class Chat(BaseModel):
     name: str
-    init_prompt: str
+    init_prompt_path: str
     chat: List[Dict] = []
     model: Any
     max_new_tokens: int
 
     def model_post_init(self, __context: Any) -> None:
         logger.info(f"Initializing chatbot '{self.name}'")
-        self.continue_chat(self.init_prompt)
+        init_prompt = open(self.init_prompt_path, "r").read()
+        self.continue_chat(init_prompt)
 
     def continue_chat(self, prompt: str) -> None:
         logger.info(f"Chatbot '{self.name}' processing prompt '{prompt}'")
@@ -29,12 +30,6 @@ class Chat(BaseModel):
         )[
             0
         ]["generated_text"]
-        # self.chat.append(
-        #     {
-        #         "role": "assistant",
-        #         "content": f"{self.name} response to {prompt}",
-        #     }
-        # )
 
     def chat_dict2list(self) -> List[str]:
         chat_list = [x["content"] for x in self.chat]

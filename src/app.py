@@ -17,7 +17,6 @@ load_dotenv()
 
 logger.info(f"""Initializing model '{configs["model_id"]}'""")
 
-# pipe = None
 pipe = pipeline(
     "text-generation",
     configs["model_id"],
@@ -29,19 +28,19 @@ pipe = pipeline(
 chatbot_list: List[Chat] = [
     Chat(
         name="Seneca",
-        init_prompt=configs["prompts"]["seneca"],
+        init_prompt_path=configs["prompts"]["seneca"],
         model=pipe,
         max_new_tokens=configs["max_new_tokens"],
     ),
     Chat(
         name="Confucius",
-        init_prompt=configs["prompts"]["confucius"],
+        init_prompt_path=configs["prompts"]["confucius"],
         model=pipe,
         max_new_tokens=configs["max_new_tokens"],
     ),
     Chat(
         name="Aristotle",
-        init_prompt=configs["prompts"]["aristotle"],
+        init_prompt_path=configs["prompts"]["aristotle"],
         model=pipe,
         max_new_tokens=configs["max_new_tokens"],
     ),
@@ -84,4 +83,8 @@ with gr.Blocks() as demo:
     clear = gr.ClearButton([msg, chatbot])
     msg.submit(chat_fn, [msg, chatbot], [msg, chatbot])
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch(
+        server_port=int(os.environ["SERVER_PORT"]),
+        server_name=os.environ["SERVER_NAME"],
+    )
