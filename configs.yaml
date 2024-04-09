@@ -1,4 +1,4 @@
-model_id: google/gemma-2b-it
+model_id: google/gemma-1.1-2b-it
 device: cpu
 max_new_tokens: 128
 prompts:
