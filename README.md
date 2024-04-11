@@ -1,11 +1,14 @@
 # Philosophers council
 
-{project description}
+### Seek council from some of the most relevant philosophers of all time.
+
+This project is a chatbot powered by Google's [Gemma](https://ai.google.dev/gemma/) open-source model. Here you will find a Gradio app with multiple chatbots that impersonate famous philosophers. You can seek guidance or talk with them and get responses based on different philosophy schools.
+
+Feel free to extend this app, tweak the existing bots or add your own.
 
 ![Diagram](./assets/diagram.jpg)
 
 # Demo
-
 ![Demo](./assets/demo.png)
 
 # Usage
@@ -27,10 +30,8 @@ prompts:
 - **prompts:**
   - **bot_name:** Bot's initialization prompt (each bot should have one starting prompt).
 
-
 ## Commands
-
-Start the Chatbot app.
+Start the chatbot app.
 ```bash
 make chatbot
 ```
@@ -48,3 +49,6 @@ make lint
 # References
 - [Gemma-1.1-2b-it HuggingFace model card](https://huggingface.co/google/gemma-1.1-2b-it)
 - [Gemma Kaggle model card](https://www.kaggle.com/models/google/gemma)
+
+# Disclaimer
+This project is aimed only at entertainment purposes only, I do not recommend following LLMs-generated suggestions or using them for any psychologist-related activities.
